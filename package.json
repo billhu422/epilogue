@@ -36,7 +36,8 @@
   "dependencies": {
     "bluebird": "^3.0.0",
     "inflection": "^1.7.1",
-    "lodash": "^4.8.2"
+    "lodash": "^4.8.2",
+    "mysql": "^2.13.0"
   },
   "devDependencies": {
     "body-parser": "^1.13.3",
