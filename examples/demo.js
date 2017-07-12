@@ -3,9 +3,13 @@ var Sequelize = require('sequelize'),
     http = require('http');
 
 // Define your models
-var database = new Sequelize('inventory', 'root', 'qaz123',{
-	host:'192.168.87.152'
-});
+//mysql://localhost:3306/database
+//var database = new Sequelize('inventory', 'root', 'qaz123',{
+//	host:'192.168.87.152'
+//});
+
+var database = new Sequelize('mysql://sequelize_test:sequelize_test@192.168.87.152:8999/sequelize_test',{});
+
 var User = database.define('User', {
   username: Sequelize.STRING,
   birthday: Sequelize.DATE
@@ -47,7 +51,7 @@ database
 //  .sync({ force: true })
   .sync({ force: false })
   .then(function() {
-    server.listen(80,function() {
+    server.listen(3000,function() {
       var host = server.address().address,
           port = server.address().port;
 
