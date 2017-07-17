@@ -1,20 +1,21 @@
 var Sequelize = require('sequelize'),
     epilogue = require('../../epilogue'),
-    http = require('http');
+    http = require('http'),
+    config = require('./config');
 
 // Define your models
-//mysql://localhost:3306/database
-//var database = new Sequelize('inventory', 'root', 'qaz123',{
-//	host:'192.168.87.152'
-//});
 
-var database = new Sequelize('mysql://sequelize_test:sequelize_test@192.168.87.152:8999/sequelize_test',{});
+var database = new Sequelize(config.dbConnection,{});
 
-var User = database.define('User', {
-  username: Sequelize.STRING,
-  birthday: Sequelize.DATE
+var Inventory = database.define('Inventory',{
+  orderId: Sequelize.BIGINT(20),
+  orderItemId: Sequelize.BIGINT(20),
+  userId: Sequelize.STRING,
+  provider: Sequelize.STRING,
+  productName: Sequelize.STRING,
+  instanceId: Sequelize.STRING,
+  note: Sequelize.TEXT
 });
-
 // Initialize server
 var server, app;
 if (process.env.USE_RESTIFY) {
@@ -42,8 +43,8 @@ epilogue.initialize({
 
 // Create REST resource
 var userResource = epilogue.resource({
-  model: User,
-  endpoints: ['/users', '/users/:id']
+  model: Inventory,
+  endpoints: ['/inventory/instance', '/inventory/instance/:id']
 });
 
 // Create database and listen
@@ -51,7 +52,7 @@ database
 //  .sync({ force: true })
   .sync({ force: false })
   .then(function() {
-    server.listen(3001,function() {
+    server.listen(config.port,function() {
       var host = server.address().address,
           port = server.address().port;
 
