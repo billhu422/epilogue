@@ -14,6 +14,7 @@ var Inventory = database.define('Inventory',{
   provider: Sequelize.STRING,
   productName: Sequelize.STRING,
   instanceId: Sequelize.STRING,
+  region: Sequelize.STRING,
   note: Sequelize.TEXT
 });
 // Initialize server
