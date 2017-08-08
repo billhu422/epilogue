@@ -6,7 +6,6 @@ config.qcloud = {
         SecretKey: 'hEammaiiXTGzXv9C9zdIrXO4Zs21xAD8',
 };
 
-config.dbConnection = 'mysql://sequelize_test:sequelize_test@124.251.62.216:3306/sequelize_test';
+config.dbConnection = 'mysql://sequelize_test:sequelize_test@192.168.87.152:8999/sequelize_test';
 
 module.exports = config;
-
