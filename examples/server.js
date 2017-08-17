@@ -4,8 +4,11 @@ var Sequelize = require('sequelize'),
     config = require('./config');
 
 // Define your models
+var options = {
+  timezone:'+08:00'
+}
 
-var database = new Sequelize(config.dbConnection,{});
+var database = new Sequelize(config.dbConnection,options);
 
 var Inventory = database.define('Inventory',{
   orderId: Sequelize.BIGINT(20),
